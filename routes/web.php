@@ -6,6 +6,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductsController;
 
 
 Route::get('/', function () {
@@ -34,3 +35,5 @@ Route::post('question/store', [QuestionController::class, 'store'])
 Route::resource('pelanggan', PelangganController::class);
 
 Route::resource('user', UserController::class);
+
+Route::resource('products', ProductsController::class);
