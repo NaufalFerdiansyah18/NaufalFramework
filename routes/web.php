@@ -7,7 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductsController;
-
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,6 +34,22 @@ Route::post('question/store', [QuestionController::class, 'store'])
 
 Route::resource('pelanggan', PelangganController::class);
 
+route::group(['middleware' => ['checkrole::Super Admin']], function () {
 Route::resource('user', UserController::class);
+});
+
 
 Route::resource('products', ProductsController::class);
+
+     route::get('pelanggan',[PelangganController::class,'index'])->name('pelanggan.index')->middleware('checkislogin');
+
+
+
+
+
+     //route login
+    route::get('auth',[AuthController::class,'index'])->name('auth');
+    route::post('auth/login',[AuthController::class,'login'])->name('auth.login');
+route::get('auth/logout',[AuthController::class,'logout'])->name('auth.logout');
+
+
